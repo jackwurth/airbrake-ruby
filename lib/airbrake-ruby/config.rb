@@ -136,6 +136,9 @@ module Airbrake
     # @since v5.2.0
     attr_accessor :remote_config
 
+    # Custom: Disable ssl
+    attr_accessor :ssl_verify
+
     class << self
       # @return [Config]
       attr_writer :instance
@@ -162,6 +165,8 @@ module Airbrake
       self.remote_config_host = 'https://notifier-configs.airbrake.io'
 
       self.ignore_environments = []
+
+      self.ssl_verify = true
 
       self.timeout = user_config[:timeout]
 
