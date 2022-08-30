@@ -111,9 +111,8 @@ module Airbrake
     def build_https(uri)
       Net::HTTP.new(uri.host, uri.port, *proxy_params).tap do |https|
         https.use_ssl = uri.is_a?(URI::HTTPS)
-        unless @config.ssl_verify
-          https.default_options.ssl["verify_mode"] = 0
-        end
+        p "DISABLED SSL"
+        https.default_options.ssl["verify_mode"] = 0
         if @config.timeout
           https.open_timeout = @config.timeout
           https.read_timeout = @config.timeout
